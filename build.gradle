@@ -4,6 +4,7 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'jacoco'
 
 group = 'com.omaru'
 version = '0.0.1-SNAPSHOT'
@@ -13,7 +14,30 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	set('snippetsDir', file("build/generated-snippets"))
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-freemarker'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile group: 'javax.inject', name: 'javax.inject', version: '1'
+	compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
+	testCompile group: 'org.assertj', name: 'assertj-core', version: '3.12.2'
+}
+
+test {
+	outputs.dir snippetsDir
+}
+
+jacoco {
+	toolVersion = "0.8.4"
+	reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestReport {
+	reports {
+		xml.enabled true
+		html.enabled false
+	}
 }
