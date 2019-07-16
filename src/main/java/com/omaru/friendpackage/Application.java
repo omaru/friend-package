@@ -1,13 +1,18 @@
 package com.omaru.friendpackage;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FriendPackageApplication {
+public class Application implements CommandLineRunner {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FriendPackageApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+
+	}
 }

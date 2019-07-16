@@ -12,6 +12,9 @@ sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
+	flatDir {
+		dirs 'libs'
+	}
 }
 
 ext {
@@ -22,7 +25,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-freemarker'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compile group: 'javax.inject', name: 'javax.inject', version: '1'
+	compile files('libs/mobiquity-exception-1.0-RELEASE.jar')
 	compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
 	testCompile group: 'org.assertj', name: 'assertj-core', version: '3.12.2'
 }
 
