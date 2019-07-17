@@ -4,10 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ContainerPackage {
-    private Integer allowedWeight = 0;
+    private final Integer allowedWeight;
     private List<Item> items = new LinkedList<>();
-    public  ContainerPackage(){
-
+    public  ContainerPackage(Integer allowedWeight){
+        this.allowedWeight = Math.max(allowedWeight,0);
     }
 
     public int getAllowedWeight() {

@@ -10,12 +10,13 @@ import static org.junit.Assert.assertTrue;
 public class ContainerPackageShould {
     @Test
     public void beAbleToGetAllowedWeight(){
-        ContainerPackage containerPackage = new ContainerPackage();
-        assertEquals(0,containerPackage.getAllowedWeight());
+        int allowedWeight = 15;
+        ContainerPackage containerPackage = new ContainerPackage(allowedWeight);
+        assertEquals(allowedWeight,containerPackage.getAllowedWeight());
     }
     @Test
     public void beAbleToGetItemsInContainer(){
-        ContainerPackage containerPackage = new ContainerPackage();
+        ContainerPackage containerPackage = new ContainerPackage(10);
         List<Item> items = containerPackage.getItems();
         assertTrue("should retrieve a list of items",items.size()>=0);
     }

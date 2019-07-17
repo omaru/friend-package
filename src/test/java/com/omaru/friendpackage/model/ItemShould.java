@@ -14,12 +14,27 @@ public class ItemShould {
         assertEquals("index should match", index, item.getIndex());
     }
     @Test
-    public void retrieveWeightAndCost(){
+    public void retrieveWeightAndIndexAndCost(){
         final Integer index = 789;
         final Double weight =123.3;
         final Double cost = 35.5;
         Item item = new Item(index,weight,cost);
         assertEquals("weight should match",weight,item.getWeight());
         assertEquals("cost should match",cost,item.getCost());
+        assertEquals("cost should match",index,item.getIndex());
+
+    }
+    @Test
+    public void compareAgainstAnotherItemAndRetrieveGreater(){
+        Integer index = 789;
+        Double weight =123.3;
+        Double cost = 35.5;
+        Item lowerRateItem = new Item(index,weight,cost);
+        index = 8;
+        weight=20.3;
+        cost=51.2;
+        Item higherRateItem = new Item(index,weight,cost);
+        assertEquals("should retrieve greater",1,lowerRateItem.compareTo(higherRateItem));
+
     }
 }
