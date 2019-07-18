@@ -14,7 +14,7 @@ once is packaged just run
 java -ja $PROJECTNAME.jar -i /path/to/file/data.txt
 ``` 
 if no parameter is sent it will run the `data.txt` sample under `resources` folder.
-While executing it will present read line and below what it packaged as output.
+While executing it will present current line being read and below what it packaged as output.
 ```bash
 usage: package-friend
  -i </path/to/file.txt>   ingest testing data from path,if none provided
