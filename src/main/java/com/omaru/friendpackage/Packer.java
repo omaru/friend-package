@@ -24,7 +24,7 @@ public final class Packer {
     public Packer(ContainerPackage containerPackage){
         this.items = containerPackage.getItems();
         this.weights =items.stream().map(i->(int)i.getWeight().doubleValue()*100).collect(Collectors.toList());
-        this.values = items.stream().map(i->i.getCost()).collect(Collectors.toList());
+        this.values = items.stream().map(Item::getCost).collect(Collectors.toList());
         this.totalItems = containerPackage.getItems().size();
         this.maximumWeightAllowed = (int)containerPackage.getAllowedWeight()*100;
         this.packageContainer = new int[totalItems + 1][maximumWeightAllowed + 1];
@@ -50,7 +50,7 @@ public final class Packer {
     public Package pack() {
         int maximumCostReached = getMaximumCost();
         List<Integer> costIndexes = getCostIndexes(maximumCostReached);
-        List<Item> itemsInPack = costIndexes.stream().map(i->items.get(i)).collect(Collectors.toList());
+        List<Item> itemsInPack = costIndexes.stream().map(items::get).collect(Collectors.toList());
         return new Package(itemsInPack);
     }
 
@@ -64,9 +64,7 @@ public final class Packer {
             // [w-wt[i-1]]) as in Knapsack table. If
             // it comes from the latter one/ it means
             // the item is included.
-            if (maximumCostReached == packageContainer[index][w])
-                continue;
-            else {
+            if(maximumCostReached != packageContainer[index][w]){
                 costIndexes.add(index);
                 // Since this weight is included its
                 // value is deducted

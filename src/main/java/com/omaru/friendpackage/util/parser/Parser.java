@@ -16,7 +16,7 @@ public final class Parser {
     private static final int ITEM_WEIGHT_POSITION=1;
     private static final int ITEM_COST_POSITION=2;
     private static final double DEFAULT_WEIGHT=0;
-    private static final String DEMILITERS = ":(),€";
+    private static final String DELIMITERS = ":(),€";
     public static ContainerPackage parse(String input) throws APIException {
         double allowedWeight= getAllowedWeight(input);
         List<List<Object>> values = getValues(input);
@@ -25,7 +25,7 @@ public final class Parser {
     }
 
     private static double getAllowedWeight(String input) {
-        StringTokenizer tokenizer = new StringTokenizer(input,DEMILITERS);
+        StringTokenizer tokenizer = new StringTokenizer(input, DELIMITERS);
         while(tokenizer.hasMoreTokens()){
             String token = tokenizer.nextToken();
             if(isNotBlank(token)){
@@ -50,7 +50,7 @@ public final class Parser {
 
     private static List<List<Object>> getValues(String input) {
         List<List<Object>> values = new LinkedList<>();
-        StringTokenizer tokenizer = new StringTokenizer(input, DEMILITERS);
+        StringTokenizer tokenizer = new StringTokenizer(input, DELIMITERS);
         int index = -1;
         while(tokenizer.hasMoreTokens()){
             String token = tokenizer.nextToken();
