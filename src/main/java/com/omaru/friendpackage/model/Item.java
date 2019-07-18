@@ -1,34 +1,23 @@
 package com.omaru.friendpackage.model;
 
+import com.mobiquityinc.exception.APIException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import static com.omaru.friendpackage.util.ApplicationConstraints.maxAllowedCostInItem;
+import static com.omaru.friendpackage.util.ApplicationConstraints.maxAllowedWeightInItem;
+import static com.omaru.friendpackage.util.NumberUtil.truncate;
+
 @EqualsAndHashCode @Getter
-public class Item implements Comparable<Item>{
-    private final int index;
-    private final double weight;
-    private final double cost;
-    private double weightInPackage =-0.0001;
-    public Item(Integer index,Double weight,Double cost){
+public class Item{
+    private final Integer index;
+    private final Double weight;
+    private final Integer cost;
+
+    public Item(Integer index,Double weight,Integer cost)throws APIException {
         this.index = index;
-        this.weight = Math.max(weight,0);
-        this.cost = Math.max(cost,0);//assumming there are no negative costs
+        this.weight = maxAllowedWeightInItem(truncate(Math.max(weight,0)));
+        this.cost = maxAllowedCostInItem(Math.max(cost,0));//assumming there are no negative costs
     }
 
-    public void setWeightInPackage(double weightInPackage) {
-        this.weightInPackage = Math.max(weightInPackage, 0);
-    }
-
-    @Override
-    public int compareTo(Item item) {
-        int result = 0;
-        double thisRate = getCost()/getWeight();
-        double thatRate = item.getCost()/item.getWeight();
-        if(thisRate > thatRate){
-            result = -1;
-        }else if(thisRate < thatRate){
-            result =1;
-        }
-        return result;
-    }
 }
