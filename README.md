@@ -8,7 +8,7 @@
 ```bash
 ./gradlew  build
 ``` 
-### usage
+### Usage
 once is packaged just run 
 ```bash
 java -ja $PROJECTNAME.jar -i /path/to/file/data.txt
@@ -28,7 +28,8 @@ usage: package-friend
 -
 7,2
 ``` 
-
+#### Running Sample
+![running](https://user-images.githubusercontent.com/877539/61487385-05763480-a963-11e9-8974-077cf313d34a.gif)
 #### Tooling
 - gradle
 - spring (core)
